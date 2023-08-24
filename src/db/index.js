@@ -4,7 +4,7 @@ const config = require("../shared/config");
 module.exports = function () {
   return mongoose
     .connect(
-      `mongodb+srv://sardorbekmusilman:Just_password03@cluster0.ysxkkxu.mongodb.net/?retryWrites=true&w=majority`,
+      `mongodb+srv://sardorbekmusilman:Just_password03@cluster0.ysxkkxu.mongodb.net/blogs`,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
