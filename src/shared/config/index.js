@@ -1,14 +1,17 @@
-require('dotenv/config');
+require("dotenv/config");
 
 module.exports = {
   env: process.env.NODE_ENV,
   port: process.env.PORT,
   db: {
-    host: process.env.DB_CREDINTIAL,
+    credential: process.env.DB_CREDINTIAL,
     port: process.env.DB_PORT,
-    name: process.env.DB_NAME,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
+    name: process.env.DB_NAME
+  },
+  cloud: {
+    name: process.env.CLOUD_NAME,
+    key: process.env.API_KEY,
+    secret: process.env.API_SECRET,
   },
   jwt: {
     secret: process.env.JWT_SECRET,

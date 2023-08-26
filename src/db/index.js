@@ -4,7 +4,7 @@ const config = require("../shared/config");
 module.exports = function () {
   return mongoose
     .connect(
-      `mongodb+srv://sardorbekmusilman:Just_password03@cluster0.ysxkkxu.mongodb.net/blogs`,
+      `mongodb+srv://${config.db.credential}@cluster0.ysxkkxu.mongodb.net/${config.db.name}`,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
