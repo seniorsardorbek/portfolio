@@ -7,7 +7,7 @@ const BlogSchema = new mongoose.Schema(
       required: true,
     },
     pictures: {
-      type: mongoose.SchemaTypes.String,
+      type: mongoose.SchemaTypes.Array,
       default : false , 
     },
     text: {

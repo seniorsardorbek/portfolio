@@ -2,10 +2,6 @@ const express = require("express");
 const httpValidator = require("../../shared/http-validator");
 const listBlogs = require("./list-blogs");
 const addBlog = require("./add-blog");
-const uuid = require("uuid");
-const fs = require("fs");
-
-const cloudinary = require("cloudinary");
 const removeBlog = require("./remove-blog");
 const Blog = require("./Blog");
 const showBlog = require("./show-blog");
@@ -43,26 +39,11 @@ const getBlog = async (req, res, next) => {
 const postBlogs = async (req, res, next) => {
   try {
     httpValidator({ body: req.body }, postBlogsSchema );
-    let picture = req.files?.pictures;
-    if (picture) {
-      const picturename =
-        picture && `${uuid.v4()}.${picture?.mimetype.split("/")[1]}`;
-      await picture?.mv(`${process.cwd()}/uploads/${picturename}`);
-      picture = await cloudinary.v2.uploader.upload(
-        `${process.cwd()}/uploads/${picturename}`,
-        { public_id: picturename },
-        function (error, result) {
-          return result;
-        }
-      );
-      if (picture) {
-        fs.unlinkSync(`${process.cwd()}/uploads/${picturename}`);
-      }
-    }
+    images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     const result = await addBlog({
       user: req.user.id,
       ...req.body,
-      pictures: picture?.secure_url,
+      pictures: images,
     });
 
     res.status(200).json({

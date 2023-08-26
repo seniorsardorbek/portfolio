@@ -8,7 +8,6 @@ module.exports = function () {
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
-
         serverSelectionTimeoutMS: 150000, // Increase timeout to 15 seconds
         useUnifiedTopology: true,
       }
